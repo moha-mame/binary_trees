@@ -6,12 +6,24 @@
  *
  * Return: pointer to sibling node or NULL
  */
+
 binary_tree_t *binary_tree_sibling(binary_tree_t *node)
 {
-	if (!node || !node->parent)
+	if (node == NULL || node->parent == NULL)
 		return (NULL);
-	if (binary_tree_is_perfect(node->parent))
-		return (node == node->parent->left ? node->parent->right :
-			node->parent->left);
-	return (NULL);
+
+	if (node->parent->left == node)
+	{
+		if (node->parent->right == NULL)
+			return (NULL);
+		else
+			return (node->parent->right);
+	}
+	else
+	{
+		if (node->parent->left == NULL)
+			return (NULL);
+		else
+			return (node->parent->left);
+	}
 }
